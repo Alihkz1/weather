@@ -27,6 +27,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const MODULES = [
   CdkTreeModule,
@@ -57,6 +58,7 @@ const MODULES = [
   MatAutocompleteModule,
   MatButtonToggleModule,
   MatProgressSpinnerModule,
+  MatSnackBarModule,
 ];
 @NgModule({
   imports: [...MODULES],
