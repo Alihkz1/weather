@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { WeatherService } from '../../shared/services/weather.service';
@@ -16,7 +17,7 @@ export class InputComponent implements OnInit {
   input = new FormGroup({});
 
   model = {
-    cityName: 'cityName',
+    cityName: '',
   };
 
   fields: FormlyFieldConfig[] = [
@@ -27,7 +28,7 @@ export class InputComponent implements OnInit {
       templateOptions: {
         appearance: 'outline',
         label: 'city name',
-        placeholder: 'Enter your User name',
+        placeholder: 'Enter city name',
         required: true,
       },
     },
@@ -38,20 +39,33 @@ export class InputComponent implements OnInit {
     private dialogRef: MatDialogRef<InputComponent>,
     private weatherService: WeatherService,
     private outPutFacade: OutPutFacade,
-    private router: Router
+    private router: Router,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void {}
 
   public onSubmit() {
+    this.flag = true;
     if (!this.input.valid) return;
-    this.weatherService
-      .onGetWeather(this.model.cityName)
-      .subscribe((cityInfo) => {
+    this.weatherService.onGetWeather(this.model.cityName).subscribe(
+      (cityInfo) => {
         this.outPutFacade.setCityInfo = cityInfo;
-        this.flag = true;
-      });
-    this.dialogRef.close();
-    this.router.navigate(['outPut']);
+        setTimeout(() => {
+          this.snack.open('success', 'ok', {
+            duration: 1500,
+          });
+          this.router.navigate(['outPut']);
+          this.flag = false;
+          this.dialogRef.close();
+        }, 2000);
+      },
+      (error) => {
+        this.snack.open('fail ! please enter correct name', 'ok', {
+          duration: 1500,
+        });
+        this.flag = false;
+      }
+    );
   }
 }

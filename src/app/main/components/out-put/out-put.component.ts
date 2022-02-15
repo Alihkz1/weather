@@ -8,6 +8,7 @@ import { OutPutFacade } from './out-put.facade';
   styleUrls: ['./out-put.component.scss'],
 })
 export class OutPutComponent implements OnInit {
+  name = '';
   feelsLike = 0;
   humidity = 0;
   temp = 0;
@@ -17,11 +18,13 @@ export class OutPutComponent implements OnInit {
 
   ngOnInit(): void {
     this.outPutFacade.cityInfo.subscribe((info) => {
-      this.feelsLike = Number((info.feelsLike - 272.25).toFixed(0));
-      this.humidity = Number(info.humidity.toFixed(0));
-      this.temp = Number((info.temp - 272.25).toFixed(0));
-      this.max = Number((info.temp_max - 272.25).toFixed(0));
-      this.min = Number((info.temp_min - 272.25).toFixed(0));
+      if (info.length == 0) this.router.navigate(['/main']);
+      this.name = info.name;
+      this.feelsLike = Number((info.feelsLike - 272.25)?.toFixed(0));
+      this.humidity = Number(info.humidity?.toFixed(0));
+      this.temp = Number((info.temp - 272.25)?.toFixed(0));
+      this.max = Number((info.temp_max - 272.25)?.toFixed(0));
+      this.min = Number((info.temp_min - 272.25)?.toFixed(0));
     });
   }
 
