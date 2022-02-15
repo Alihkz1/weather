@@ -48,16 +48,24 @@ export class InputComponent implements OnInit {
   public onSubmit() {
     this.flag = true;
     if (!this.input.valid) return;
-    this.weatherService
-      .onGetWeather(this.model.cityName)
-      .subscribe((cityInfo) => {
+    this.weatherService.onGetWeather(this.model.cityName).subscribe(
+      (cityInfo) => {
         this.outPutFacade.setCityInfo = cityInfo;
         setTimeout(() => {
-          this.snack.open('success');
+          this.snack.open('success', 'ok', {
+            duration: 1500,
+          });
           this.router.navigate(['outPut']);
           this.flag = false;
           this.dialogRef.close();
         }, 2000);
-      });
+      },
+      (error) => {
+        this.snack.open('fail ! please enter correct name', 'ok', {
+          duration: 1500,
+        });
+        this.flag = false;
+      }
+    );
   }
 }
