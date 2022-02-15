@@ -1,0 +1,19 @@
+<mat-card class="example-card">
+  <mat-card-header>
+    <div mat-card-avatar class="example-header-image"></div>
+    <mat-card-subtitle>{{ temp }}</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <h1>humidity</h1>
+    <p>{{ humidity }}</p>
+    <h1>maximum</h1>
+    <p>{{ max }}</p>
+    <h1>minimum</h1>
+    <p>{{ min }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <button type="button" class="btn btn-success" (click)="onTryAgain()">
+      try another city !
+    </button>
+  </mat-card-actions>
+</mat-card>
