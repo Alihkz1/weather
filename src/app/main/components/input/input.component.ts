@@ -1,8 +1,10 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { WeatherService } from '../../shared/services/weather.service';
+import { OutPutFacade } from '../out-put/out-put.facade';
 
 @Component({
   selector: 'app-input',
@@ -10,6 +12,7 @@ import { WeatherService } from '../../shared/services/weather.service';
   styleUrls: ['./input.component.scss'],
 })
 export class InputComponent implements OnInit {
+  flag = false;
   input = new FormGroup({});
 
   model = {
@@ -33,7 +36,9 @@ export class InputComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<InputComponent>,
-    private weatherService: WeatherService
+    private weatherService: WeatherService,
+    private outPutFacade: OutPutFacade,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
@@ -42,9 +47,11 @@ export class InputComponent implements OnInit {
     if (!this.input.valid) return;
     this.weatherService
       .onGetWeather(this.model.cityName)
-      .subscribe((result) => {
-        console.log(result);
+      .subscribe((cityInfo) => {
+        this.outPutFacade.setCityInfo = cityInfo;
+        this.flag = true;
       });
     this.dialogRef.close();
+    this.router.navigate(['outPut']);
   }
 }
