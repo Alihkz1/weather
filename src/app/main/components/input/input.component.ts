@@ -14,6 +14,7 @@ import { OutPutFacade } from '../out-put/out-put.facade';
 })
 export class InputComponent implements OnInit {
   flag = false;
+  error = false;
   input = new FormGroup({});
 
   model = {
@@ -53,14 +54,15 @@ export class InputComponent implements OnInit {
         this.outPutFacade.setCityInfo = cityInfo;
         setTimeout(() => {
           this.snack.open('success', 'ok', {
-            duration: 1500,
+            duration: 1000,
           });
           this.router.navigate(['outPut']);
           this.flag = false;
           this.dialogRef.close();
-        }, 2000);
+        }, 1000);
       },
       (error) => {
+        this.error = true;
         this.snack.open('fail ! please enter correct name', 'ok', {
           duration: 1500,
         });
