@@ -3,17 +3,17 @@ import { Router } from '@angular/router';
 import { OutPutFacade } from './out-put.facade';
 
 @Component({
-  selector: 'app-out-put',
-  templateUrl: './out-put.component.html',
-  styleUrls: ['./out-put.component.scss'],
+  selector: 'app-output',
+  templateUrl: './output.component.html',
+  styleUrls: ['./output.component.scss'],
 })
 export class OutPutComponent implements OnInit {
-  name = '';
-  feelsLike = 0;
-  humidity = 0;
-  temp = 0;
-  max = 0;
-  min = 0;
+  name: string = '';
+  feelsLike: number = 0;
+  humidity: number = 0;
+  temp: number = 0;
+  max: number = 0;
+  min: number = 0;
   constructor(private outPutFacade: OutPutFacade, private router: Router) {}
 
   ngOnInit(): void {

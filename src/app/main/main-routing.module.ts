@@ -3,7 +3,7 @@ import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { InputComponent } from './components/input/input.component';
-import { OutPutComponent } from './components/out-put/out-put.component';
+import { OutPutComponent } from './components/out-put/output.component';
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
