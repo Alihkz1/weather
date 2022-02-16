@@ -72,6 +72,9 @@ MIT
 @ngx-formly/core
 MIT
 
+@ngx-formly/material
+MIT
+
 bootstrap
 MIT
 The MIT License (MIT)
