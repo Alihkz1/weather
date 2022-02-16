@@ -12,8 +12,12 @@
       </button>
     </div>
   </div>
-  <hr />
   <div *ngIf="flag" class="waiting">
+    <hr />
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+  </div>
+  <div *ngIf="error" class="waiting">
+    <hr />
+    <p>'fail ! please enter correct name'</p>
   </div>
 </div>

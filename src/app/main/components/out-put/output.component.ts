@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { InputComponent } from '../input/input.component';
 import { OutPutFacade } from './out-put.facade';
 
 @Component({
@@ -14,14 +16,18 @@ export class OutPutComponent implements OnInit {
   temp: number = 0;
   max: number = 0;
   min: number = 0;
-  constructor(private outPutFacade: OutPutFacade, private router: Router) {}
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+    private outPutFacade: OutPutFacade
+  ) {}
 
   ngOnInit(): void {
     this.onGetCityInfo();
   }
 
   public onTryAgain() {
-    this.router.navigate(['/main']);
+    this.dialog.open(InputComponent, { height: '30%', width: '80%' });
   }
 
   private onConvertInfo(info: any) {
