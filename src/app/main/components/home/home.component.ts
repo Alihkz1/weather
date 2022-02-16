@@ -9,7 +9,7 @@ import { InputComponent } from '../input/input.component';
 export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
   openDialog() {
-    this.dialog.open(InputComponent, { height: '30%', width: '40%' });
+    this.dialog.open(InputComponent, { height: '30%', width: '60%' });
   }
 
   ngOnInit(): void {}
