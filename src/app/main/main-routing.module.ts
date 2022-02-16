@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { InputComponent } from './components/input/input.component';
@@ -10,23 +10,26 @@ const routes: Routes = [
   {
     path: '',
     component: MainComponent,
-  },
-  {
-    path: 'inPut',
-    component: InputComponent,
-  },
-  {
-    path: 'outPut',
-    component: OutPutComponent,
-  },
-  {
-    path: '**',
-    component: HomeComponent,
+    children: [
+      {
+        path: 'inPut',
+        component: InputComponent,
+      },
+      {
+        path: 'outPut',
+        component: OutPutComponent,
+      },
+      {
+        path: '**',
+        component: HomeComponent,
+      },
+    ],
   },
 ];
 
 @NgModule({
   imports: [CommonModule, RouterModule.forChild(routes)],
   exports: [RouterModule],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainRoutingModule {}
