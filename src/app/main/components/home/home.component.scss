@@ -12,6 +12,24 @@ a {
   margin-top: 40%;
 }
 button {
+  color: antiquewhite;
   padding: 20px;
   border-radius: 40px;
+  background-color: red;
+  animation-name: example;
+  animation-duration: 4s;
+}
+@keyframes example {
+  0% {
+    background-color: red;
+  }
+  25% {
+    background-color: yellow;
+  }
+  50% {
+    background-color: blue;
+  }
+  100% {
+    background-color: green;
+  }
 }
