@@ -27,7 +27,7 @@ export class OutPutComponent implements OnInit {
   }
 
   public onTryAgain() {
-    this.dialog.open(InputComponent, { height: '30%', width: '80%' });
+    this.dialog.open(InputComponent, { height: '30%', width: '40%' });
   }
 
   private onConvertInfo(info: any) {
