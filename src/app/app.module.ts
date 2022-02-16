@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutModule } from './layout/layout.module';
 import { MainModule } from './main/main.module';
 import { FormModule } from 'src/shared/modules/formly/formly.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   imports: [
     FormModule,
     MainModule,
-    LayoutModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
