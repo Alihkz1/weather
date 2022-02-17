@@ -35,11 +35,11 @@ export class SeachCityComponent implements OnInit {
   ];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<SeachCityComponent>,
-    private weatherService: WeatherService,
+    private router: Router,
     private snack: MatSnackBar,
-    private router: Router
+    private weatherService: WeatherService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SeachCityComponent>
   ) {}
 
   ngOnInit(): void {}
@@ -51,24 +51,30 @@ export class SeachCityComponent implements OnInit {
       (cityInfo: any) => {
         if (!cityInfo) return;
         this.weatherService.setCityInfo = cityInfo;
-        setTimeout(() => {
-          this.snack.open('success', 'ok', {
-            duration: 1000,
-          });
-          this.router.navigate(['outPut']);
-          this.pending = false;
-          this.dialogRef.close();
-        }, 1000);
+        this.onSuccess();
       },
       (error: any) => {
-        if (error) {
-          this.error = true;
-          this.snack.open('fail ! please enter correct name', 'ok', {
-            duration: 1500,
-          });
-          this.pending = false;
-        }
+        if (error) this.onError();
       }
     );
+  }
+
+  private onSuccess() {
+    setTimeout(() => {
+      this.snack.open('success', 'ok', {
+        duration: 1000,
+      });
+      this.router.navigate(['show-city-weather']);
+      this.pending = false;
+      this.dialogRef.close();
+    }, 1000);
+  }
+
+  private onError() {
+    this.error = true;
+    this.snack.open('fail ! please enter correct name', 'ok', {
+      duration: 1500,
+    });
+    this.pending = false;
   }
 }

@@ -15,24 +15,25 @@ export class WeatherService {
   }
   public set setCityInfo(info: any) {
     let name = info['name'];
-    let feelsLike = info['main']['feels_like'];
-    let temp = info['main']['temp'];
-    let humidity = info['main']['humidity'];
-    let temp_min = info['main']['temp_min'];
-    let temp_max = info['main']['temp_max'];
+    let cityInfo = info['main'];
+    let temp = cityInfo['temp'];
+    let humidity = cityInfo['humidity'];
+    let temp_min = cityInfo['temp_min'];
+    let temp_max = cityInfo['temp_max'];
+    let feelsLike = cityInfo['feels_like'];
     let data = { name, feelsLike, temp, humidity, temp_min, temp_max };
     this.cityInfo$.next(data);
   }
 
-  onGetWeatherInfo(cityName: string) {
+  public onGetWeatherInfo(cityName: string) {
     this.onGetWeather(cityName).subscribe((cityInfo) => {
       this.setCityInfo = cityInfo;
     });
   }
 
   public onGetWeather(cityName: string) {
-    let base = 'https://api.openweathermap.org/data/2.5/weather?q=';
     let apiKey = 'cb2201a199894daaf5cd664edb1f49ae';
+    let base = 'https://api.openweathermap.org/data/2.5/weather?q=';
     let url: string = base + cityName + '&limit=5&appid=' + apiKey;
     return this.http.get(url);
   }
