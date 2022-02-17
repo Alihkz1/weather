@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InputComponent } from '../input/input.component';
+import { SeachCityComponent } from '../seach-city/seach-city.component';
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +10,7 @@ import { InputComponent } from '../input/input.component';
 export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
   openDialog() {
-    this.dialog.open(InputComponent, { height: '30%', width: '80%' });
+    this.dialog.open(SeachCityComponent, { height: '30%', width: '80%' });
   }
 
   ngOnInit(): void {}

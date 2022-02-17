@@ -50,7 +50,12 @@
     </div>
   </div>
   <hr />
-  <button type="button" class="btn btn-primary" (click)="onTryAgain()">
+  <button
+    type="button"
+    [ngClass]="width: 100%;"
+    class="btn btn-primary"
+    (click)="onTryAgain()"
+  >
     try another city !
   </button>
 </div>

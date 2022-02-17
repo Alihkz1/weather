@@ -5,15 +5,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { WeatherService } from '../../shared/services/weather.service';
-import { OutPutFacade } from '../out-put/out-put.facade';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: 'app-seach-city',
+  templateUrl: './seach-city.component.html',
+  styleUrls: ['./seach-city.component.scss'],
 })
-export class InputComponent implements OnInit {
-  flag = false;
+export class SeachCityComponent implements OnInit {
+  pending = false;
   error = false;
   input = new FormGroup({});
 
@@ -37,36 +36,38 @@ export class InputComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<InputComponent>,
+    private dialogRef: MatDialogRef<SeachCityComponent>,
     private weatherService: WeatherService,
-    private outPutFacade: OutPutFacade,
-    private router: Router,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {}
 
   public onSubmit() {
-    this.flag = true;
+    this.pending = true;
     if (!this.input.valid) return;
     this.weatherService.onGetWeather(this.model.cityName).subscribe(
-      (cityInfo) => {
-        this.outPutFacade.setCityInfo = cityInfo;
+      (cityInfo: any) => {
+        if (!cityInfo) return;
+        this.weatherService.setCityInfo = cityInfo;
         setTimeout(() => {
           this.snack.open('success', 'ok', {
             duration: 1000,
           });
           this.router.navigate(['outPut']);
-          this.flag = false;
+          this.pending = false;
           this.dialogRef.close();
         }, 1000);
       },
-      (error) => {
-        this.error = true;
-        this.snack.open('fail ! please enter correct name', 'ok', {
-          duration: 1500,
-        });
-        this.flag = false;
+      (error: any) => {
+        if (error) {
+          this.error = true;
+          this.snack.open('fail ! please enter correct name', 'ok', {
+            duration: 1500,
+          });
+          this.pending = false;
+        }
       }
     );
   }

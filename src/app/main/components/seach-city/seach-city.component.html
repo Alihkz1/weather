@@ -7,12 +7,17 @@
   </div>
   <div class="row">
     <div class="col-12">
-      <button type="button" class="btn btn-success" (click)="onSubmit()">
+      <button
+        type="button"
+        class="btn btn-success"
+        [ngClass]="width: 100%;"
+        (click)="onSubmit()"
+      >
         submit
       </button>
     </div>
   </div>
-  <div *ngIf="flag" class="waiting">
+  <div *ngIf="pending" class="waiting">
     <hr />
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
