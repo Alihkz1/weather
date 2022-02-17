@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { WeatherService } from '../../shared/services/weather.service';
-import { SeachCityComponent } from '../seach-city/seach-city.component';
+import { SeachCityComponent } from '../seach-city/search-city.component';
 
 @Component({
   selector: 'app-show-city-weather',

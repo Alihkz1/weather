@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { SeachCityComponent } from './components/seach-city/seach-city.component';
+import { SeachCityComponent } from './components/seach-city/search-city.component';
 import { ShowCityWeatherComponent } from './components/show-city-weather/show-city-weather.component';
 import { MainComponent } from './main.component';
 

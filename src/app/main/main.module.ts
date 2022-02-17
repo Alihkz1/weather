@@ -6,7 +6,7 @@ import { MaterialModule } from 'src/shared/modules/material/material.module';
 import { FormModule } from 'src/shared/modules/formly/formly.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
-import { SeachCityComponent } from './components/seach-city/seach-city.component';
+import { SeachCityComponent } from './components/seach-city/search-city.component';
 import { ShowCityWeatherComponent } from './components/show-city-weather/show-city-weather.component';
 @NgModule({
   declarations: [

@@ -7,14 +7,14 @@ import { FormlyFieldConfig } from '@ngx-formly/core';
 import { WeatherService } from '../../shared/services/weather.service';
 
 @Component({
-  selector: 'app-seach-city',
-  templateUrl: './seach-city.component.html',
-  styleUrls: ['./seach-city.component.scss'],
+  selector: 'app-search-city',
+  templateUrl: './search-city.component.html',
+  styleUrls: ['./search-city.component.scss'],
 })
 export class SeachCityComponent implements OnInit {
-  pending = false;
-  error = false;
-  input = new FormGroup({});
+  public pending = false;
+  public error = false;
+  public input = new FormGroup({});
 
   model = {
     cityName: '',
@@ -54,7 +54,8 @@ export class SeachCityComponent implements OnInit {
         this.onSuccess();
       },
       (error: any) => {
-        if (error) this.onError();
+        if (!error) return;
+        this.onError();
       }
     );
   }
