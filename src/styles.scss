@@ -1,15 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @import url("../src/shared/styles/formly.scss");
-@import url("https://fonts.googleapis.com/css2?family=Redressed&family=Roboto:ital,wght@1,300&family=Zen+Kurenaido&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,600&family=Redressed&family=Roboto:ital,wght@1,300&family=Zen+Kurenaido&display=swap");
+h1,
+p,
+a,
+button,
+legend {
+  font-family: "Poppins", sans-serif;
+}
 html,
 body {
   height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-h1,
-p {
-  font-family: "Redressed", cursive;
 }

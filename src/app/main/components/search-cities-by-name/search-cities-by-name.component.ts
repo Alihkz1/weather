@@ -12,7 +12,7 @@ import { WeatherService } from '../../shared/services/weather.service';
   styleUrls: ['./search-cities-by-name.component.scss'],
 })
 export class SearchCitiesByNameComponent implements OnInit {
-  flag = false;
+  pending = false;
   error = false;
   input = new FormGroup({});
 
@@ -45,27 +45,36 @@ export class SearchCitiesByNameComponent implements OnInit {
   ngOnInit(): void {}
 
   public onSubmit() {
-    this.flag = true;
+    this.pending = true;
     if (!this.input.valid) return;
     this.weatherService.onGetWeather(this.model.cityName).subscribe(
       (cityInfo) => {
+        if (!cityInfo) return;
         this.weatherService.setCityInfo = cityInfo;
-        setTimeout(() => {
-          this.snack.open('success', 'ok', {
-            duration: 1000,
-          });
-          this.router.navigate(['outPut']);
-          this.flag = false;
-          this.dialogRef.close();
-        }, 1000);
+        this.onSuccess();
       },
       (error) => {
-        this.error = true;
-        this.snack.open('fail ! please enter correct name', 'ok', {
-          duration: 1500,
-        });
-        this.flag = false;
+        if (!error) return;
+        this.onError();
       }
     );
+  }
+  private onSuccess() {
+    setTimeout(() => {
+      this.snack.open('success', 'ok', {
+        duration: 1000,
+      });
+      this.router.navigate(['show-city-weather']);
+      this.pending = false;
+      this.dialogRef.close();
+    }, 1000);
+  }
+
+  private onError() {
+    this.error = true;
+    this.snack.open('fail ! please enter correct name', 'ok', {
+      duration: 1500,
+    });
+    this.pending = false;
   }
 }

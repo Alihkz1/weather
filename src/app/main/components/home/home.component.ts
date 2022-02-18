@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
   openDialog() {
     this.dialog.open(SearchCitiesByNameComponent, {
       height: '30%',
-      width: '80%',
+      width: '60%',
     });
   }
 
