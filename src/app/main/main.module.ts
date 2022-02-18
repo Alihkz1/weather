@@ -9,8 +9,10 @@ import { MaterialModule } from 'src/shared/modules/material/material.module';
 import { FormModule } from 'src/shared/modules/formly/formly.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { ShowCitiesWeatherInfoComponent } from './components/show-cities-weather-info/show-cities-weather-info.component';
+import { SearchCitiesByNameComponent } from './components/search-cities-by-name/search-cities-by-name.component';
 @NgModule({
-  declarations: [HomeComponent, InputComponent, OutPutComponent, MainComponent],
+  declarations: [HomeComponent, InputComponent, OutPutComponent, MainComponent, ShowCitiesWeatherInfoComponent, SearchCitiesByNameComponent],
   imports: [
     CommonModule,
     MainRoutingModule,
