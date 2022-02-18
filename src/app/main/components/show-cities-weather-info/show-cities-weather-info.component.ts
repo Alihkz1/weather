@@ -30,7 +30,7 @@ export class ShowCitiesWeatherInfoComponent implements OnInit {
   public onTryAgain() {
     this.dialog.open(SearchCitiesByNameComponent, {
       height: '30%',
-      width: '80%',
+      width: '60%',
     });
   }
 

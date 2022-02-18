@@ -13,11 +13,11 @@ const routes: Routes = [
     component: MainComponent,
     children: [
       {
-        path: 'inPut',
+        path: 'search',
         component: SearchCitiesByNameComponent,
       },
       {
-        path: 'outPut',
+        path: 'show-city-weather',
         component: ShowCitiesWeatherInfoComponent,
       },
       {

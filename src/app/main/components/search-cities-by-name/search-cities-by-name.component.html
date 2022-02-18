@@ -1,18 +1,20 @@
 <div class="container">
   <div class="row">
-    <div class="col-12">
+    <div class="col-md-5 col-sm-12">
       <formly-form [form]="input" [fields]="fields" [model]="model">
       </formly-form>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <button type="button" class="btn btn-success" (click)="onSubmit()">
-        submit
-      </button>
+  <div class="submit">
+    <div class="row">
+      <div class="col-12">
+        <button type="button" class="btn btn-success" (click)="onSubmit()">
+          submit
+        </button>
+      </div>
     </div>
   </div>
-  <div *ngIf="flag" class="waiting">
+  <div *ngIf="pending" class="waiting">
     <hr />
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
