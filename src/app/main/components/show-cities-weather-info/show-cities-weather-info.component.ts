@@ -1,25 +1,26 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { InputComponent } from '../input/input.component';
-import { OutPutFacade } from './out-put.facade';
+import { WeatherService } from '../../shared/services/weather.service';
+import { SearchCitiesByNameComponent } from '../search-cities-by-name/search-cities-by-name.component';
 
 @Component({
-  selector: 'app-output',
-  templateUrl: './output.component.html',
-  styleUrls: ['./output.component.scss'],
+  selector: 'app-show-cities-weather-info',
+  templateUrl: './show-cities-weather-info.component.html',
+  styleUrls: ['./show-cities-weather-info.component.scss'],
 })
-export class OutPutComponent implements OnInit {
+export class ShowCitiesWeatherInfoComponent implements OnInit {
   name: string = '';
   feelsLike: number = 0;
   humidity: number = 0;
   temp: number = 0;
   max: number = 0;
   min: number = 0;
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
-    private outPutFacade: OutPutFacade
+    private weatherService: WeatherService
   ) {}
 
   ngOnInit(): void {
@@ -27,7 +28,10 @@ export class OutPutComponent implements OnInit {
   }
 
   public onTryAgain() {
-    this.dialog.open(InputComponent, { height: '30%', width: '80%' });
+    this.dialog.open(SearchCitiesByNameComponent, {
+      height: '30%',
+      width: '80%',
+    });
   }
 
   private onConvertInfo(info: any) {
@@ -42,7 +46,7 @@ export class OutPutComponent implements OnInit {
   }
 
   private onGetCityInfo() {
-    this.outPutFacade.cityInfo.subscribe((info) => {
+    this.weatherService.cityInfo.subscribe((info) => {
       if (info.length == 0) this.router.navigate(['/main']);
       info = this.onConvertInfo(info);
       this.name = info?.name;

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { InputComponent } from '../input/input.component';
+import { SearchCitiesByNameComponent } from '../search-cities-by-name/search-cities-by-name.component';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +9,10 @@ import { InputComponent } from '../input/input.component';
 export class HomeComponent implements OnInit {
   constructor(private dialog: MatDialog) {}
   openDialog() {
-    this.dialog.open(InputComponent, { height: '30%', width: '80%' });
+    this.dialog.open(SearchCitiesByNameComponent, {
+      height: '30%',
+      width: '80%',
+    });
   }
 
   ngOnInit(): void {}

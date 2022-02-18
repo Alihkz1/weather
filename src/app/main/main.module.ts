@@ -1,16 +1,20 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
-import { InputComponent } from './components/input/input.component';
 import { HttpClientModule } from '@angular/common/http';
-import { OutPutComponent } from './components/out-put/output.component';
-import { OutPutFacade } from './components/out-put/out-put.facade';
 import { MaterialModule } from 'src/shared/modules/material/material.module';
 import { FormModule } from 'src/shared/modules/formly/formly.module';
 import { MainComponent } from './main.component';
 import { MainRoutingModule } from './main-routing.module';
+import { ShowCitiesWeatherInfoComponent } from './components/show-cities-weather-info/show-cities-weather-info.component';
+import { SearchCitiesByNameComponent } from './components/search-cities-by-name/search-cities-by-name.component';
 @NgModule({
-  declarations: [HomeComponent, InputComponent, OutPutComponent, MainComponent],
+  declarations: [
+    HomeComponent,
+    MainComponent,
+    ShowCitiesWeatherInfoComponent,
+    SearchCitiesByNameComponent,
+  ],
   imports: [
     CommonModule,
     MainRoutingModule,
@@ -19,7 +23,6 @@ import { MainRoutingModule } from './main-routing.module';
     HttpClientModule,
   ],
   exports: [HomeComponent],
-  providers: [OutPutFacade],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class MainModule {}

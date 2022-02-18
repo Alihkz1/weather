@@ -5,14 +5,13 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormlyFieldConfig } from '@ngx-formly/core';
 import { WeatherService } from '../../shared/services/weather.service';
-import { OutPutFacade } from '../out-put/out-put.facade';
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: 'app-search-cities-by-name',
+  templateUrl: './search-cities-by-name.component.html',
+  styleUrls: ['./search-cities-by-name.component.scss'],
 })
-export class InputComponent implements OnInit {
+export class SearchCitiesByNameComponent implements OnInit {
   flag = false;
   error = false;
   input = new FormGroup({});
@@ -36,12 +35,11 @@ export class InputComponent implements OnInit {
   ];
 
   constructor(
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private dialogRef: MatDialogRef<InputComponent>,
-    private weatherService: WeatherService,
-    private outPutFacade: OutPutFacade,
     private router: Router,
-    private snack: MatSnackBar
+    private snack: MatSnackBar,
+    private weatherService: WeatherService,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private dialogRef: MatDialogRef<SearchCitiesByNameComponent>
   ) {}
 
   ngOnInit(): void {}
@@ -51,7 +49,7 @@ export class InputComponent implements OnInit {
     if (!this.input.valid) return;
     this.weatherService.onGetWeather(this.model.cityName).subscribe(
       (cityInfo) => {
-        this.outPutFacade.setCityInfo = cityInfo;
+        this.weatherService.setCityInfo = cityInfo;
         setTimeout(() => {
           this.snack.open('success', 'ok', {
             duration: 1000,
