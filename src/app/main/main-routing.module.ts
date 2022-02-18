@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
-import { InputComponent } from './components/input/input.component';
-import { OutPutComponent } from './components/out-put/output.component';
+import { SearchCitiesByNameComponent } from './components/search-cities-by-name/search-cities-by-name.component';
+import { ShowCitiesWeatherInfoComponent } from './components/show-cities-weather-info/show-cities-weather-info.component';
+
 import { MainComponent } from './main.component';
 
 const routes: Routes = [
@@ -13,11 +14,11 @@ const routes: Routes = [
     children: [
       {
         path: 'inPut',
-        component: InputComponent,
+        component: SearchCitiesByNameComponent,
       },
       {
         path: 'outPut',
-        component: OutPutComponent,
+        component: ShowCitiesWeatherInfoComponent,
       },
       {
         path: '**',
